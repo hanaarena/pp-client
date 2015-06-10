@@ -1,0 +1,5 @@
+extends ../angular_layout
+
+block content
+    section(ng-repeat='(key, list) in preview')
+      div(ng-repeat="item in list" ng-include="'/backyard/widgets/'+item.widgetName")

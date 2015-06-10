@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+      title= title
+
+      link(rel='stylesheet', href='/bower_modules/bootstrap/dist/css/bootstrap.css')
+      link(rel='stylesheet', href='/build/main.css')
+      block styles
+
+      block scripts
+
+  body
+    block content
+  script(type='text/javascript', src='/build/ppclient.bootstrap.js')
