@@ -4,7 +4,18 @@ block scripts
     script(type='text/javascript', src='/javascripts/main.js')
 
 block content
-    .container
-        input(type='text', placeholder='Name')
-        input(type='password', placeholder='Password')
-        input(type='submit', ng-submit='submit()')
+    .container.login(ng-controller='loginCtrl')
+        .content.row
+            .col-md-12
+                form.login-form(name='loginForm' ng-submit='submit()')
+                    .form-group
+                        .input-group
+                            span.input-group-addons.sl-icon-personal
+                            input#username.form-control.input-group-input(type='text',placeholder='Username', ng-model="email")
+                    .form-group
+                        .input-group
+                            span.input-group-addons.sl-icon-lock
+                            input#password.form-control.input-group-input(type='password', placeholder='Password', ng-model="pd")
+                    .form-group
+                        button.btn.btn-block.btn-secondary(type='submit') login
+
