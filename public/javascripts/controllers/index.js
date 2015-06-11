@@ -1,17 +1,13 @@
-var angular = require("angular");
-var backyardModule = require("./lib/backyard");
-var editConfigModule = require("./lib/editConfig");
-var previewModule = require("./lib/preview");
+var angular = require('angular');
+var loginModule = require('./lib/login');
 
-var controllersModule = angular.module("vanilla.controllers", [
-  backyardModule.name,
-  previewModule.name,
-  editConfigModule.name
+var controllersModule = angular.module('ppclient.controllers', [
+	loginModule.name
 ]);
-controllersModule.controller("MainCtrl", MainCtrl);
+controllersModule.controller('MainCtrl', MainCtrl);
 
 function MainCtrl($scope) {
 }
-MainCtrl.$inject = ["$scope"];
+MainCtrl.$inject = ['$scope'];
 
 module.exports = controllersModule;

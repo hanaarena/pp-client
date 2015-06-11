@@ -1,7 +1,7 @@
 var angular = require("angular");
 var controllersModule = require("./controllers");
 
-var ppClient = angular.module("ppc.app", [
+var ppClient = angular.module("ppclient.app", [
     controllersModule.name
 ]);
 

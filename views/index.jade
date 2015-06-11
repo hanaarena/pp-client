@@ -4,5 +4,7 @@ block scripts
     script(type='text/javascript', src='/javascripts/main.js')
 
 block content
-    input(type='text', placeholder='Name')
-    input(type='password', placeholder='Password')
+    .container
+        input(type='text', placeholder='Name')
+        input(type='password', placeholder='Password')
+        input(type='submit', ng-submit='submit()')
