@@ -19,8 +19,6 @@ apiService.factory('ApiService', [
 
 		var URL = 'https://coding.net/api';
 
-		var POST = false;
-
 		ApiService.login = function (email, password) {
 			var params = {
 				email: email,
@@ -30,32 +28,7 @@ apiService.factory('ApiService', [
 		};
 
 		ApiService.post = function (endpoint, params, config) {
-			if (POST) {
-				var c = {};
-				if(config) c = angular.extend(c, config);
-				if(params) c.params = params;
-				c.method = 'POST';
-				return ApiService.sendRequest(endpoint, c);
-			} else {
-				return ApiService.invoke(endpoint, params);
-			}
-		};
-
-		ApiService.sendRequest = function (endpoint, config) {
-			var defer = $q.defer();
-			var url = URL + endpoint;
-			return $http(angular.extend(config ? config : {}, {url: url}))
-				.then(function(response) {
-					if (response) {
-						defer.resolve(response);
-					} else {
-						defer.reject(response);
-					}
-					return defer.promise;
-				}, function(response) {
-					defer.reject(response.data);
-					return defer.promise;
-				});
+			return ApiService.invoke(endpoint, params);
 		};
 
 		ApiService.invoke = function (endpoint, params) {

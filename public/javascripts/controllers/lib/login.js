@@ -34,22 +34,22 @@ loginModule.controller('loginCtrl', [
 
 	$scope.submit = function() {
 
-		//ApiService.login($scope.email, $scope.pd)
-		//	.then(function (response) {
-		//		window.location.reload();
-		//	}, function (response) {
-		//		console.log(response);
-		//	});
+		ApiService.login($scope.email, $scope.pd)
+			.then(function (response) {
+				window.location.reload();
+			}, function (response) {
+				console.log(response);
+			});
 
 		// WARN: This will cause CORS
-		$http.post("https://coding.net/api/account/login", {
-			email: $scope.email,
-			password: $scope.pd
-		}).success(function(response) {
-			console.log(response);
-		}).error(function(e) {
-			console.log(e);
-		});
+		//$http.post("https://coding.net/api/account/login", {
+		//	email: $scope.email,
+		//	password: $scope.pd
+		//}).success(function(response) {
+		//	console.log(response);
+		//}).error(function(e) {
+		//	console.log(e);
+		//});
 
 		// TEST
 		console.log($http.defaults);
