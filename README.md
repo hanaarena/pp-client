@@ -6,7 +6,7 @@
 
 ### TODO
 
-- [ ] Login
+- [ ] Login(oAuth)
 - [ ] Get Hot pp list
 - [ ] Support comment
 - [ ] Validation

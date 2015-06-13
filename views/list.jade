@@ -1,0 +1,12 @@
+extends layout
+
+block scripts
+    script(type='text/javascript', src='/javascripts/main.js')
+
+block content
+    .container.login(ng-controller='listCtrl', ng-init="token='" + token + "'; username='" + username.data["name"] + "';")
+        .content.row
+            .col-md-12
+                span.label.label-success
+                    span !{username.data['name']}
+

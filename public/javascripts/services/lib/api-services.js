@@ -27,18 +27,25 @@ apiService.factory('ApiService', [
 			return this.post('/account/login', params);
 		};
 
+		ApiService.getCurrentUser = function (endpoint, token) {
+			return ApiService.invoke(endpoint, null, token);
+		};
+
 		ApiService.post = function (endpoint, params, config) {
 			return ApiService.invoke(endpoint, params);
 		};
 
-		ApiService.invoke = function (endpoint, params) {
+		ApiService.invoke = function (endpoint, params, token) {
 			var deferred = $q.defer(); // Create Promise
-			var url = URL + endpoint + '?callback=?';
+			if (token) {
+				var url = URL + endpoint + '?access_token' + token;
+			} else {
+				var url = URL + endpoint;
+			}
 			console.log(url);
 			deferred.promise.xhr = $.ajax(url, {
 				'dataType': 'jsonp',
-				'contentType': 'application/x-www-form-urlencoded',
-				'traditional': false,
+				'traditional': true,
 				'data': params,
 				"timeout": 120000,
 				'success': function (response, status, xhr) {
