@@ -1,8 +1,10 @@
 var angular = require('angular');
 var loginModule = require('./lib/login');
+var listModule = require('./lib/list');
 
 var controllersModule = angular.module('ppclient.controllers', [
-	loginModule.name
+	loginModule.name,
+	listModule.name
 ]);
 controllersModule.controller('MainCtrl', MainCtrl);
 

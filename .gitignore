@@ -14,9 +14,7 @@ results
 node
 npm-debug.log
 node_modules
-node-app/config/local.properties
 node-app/log
-.nodemonignore
 
 .bower-cache
 .bower-registry
@@ -27,6 +25,7 @@ node-app/log
 
 public/build
 public/bower_modules
+bower_components
 public/build
 public/stylesheets
 

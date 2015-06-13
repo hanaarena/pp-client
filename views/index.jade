@@ -4,7 +4,7 @@ block scripts
     script(type='text/javascript', src='/javascripts/main.js')
 
 block content
-    .container
-        input(type='text', placeholder='Name')
-        input(type='password', placeholder='Password')
-        input(type='submit', ng-submit='submit()')
+    .container.login(ng-controller='loginCtrl')
+        .content.row
+            .col-md-12
+                a.btn.btn-block.btn-primary(role='button', ng-click='oAuth()') OAuth
