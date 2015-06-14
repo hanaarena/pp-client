@@ -73,7 +73,6 @@ router.get('/callback/:clientId/:clientKey/:code', function (req, res, next) {
 
 		request(options, callback);
 
-		// TODO -> temp to del
 		res.redirect('/list');
 	}
 

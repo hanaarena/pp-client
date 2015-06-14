@@ -31,5 +31,9 @@
     "coding"
   ],
   "author": "Lanz",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "gulp-nodemon": "^2.0.3",
+    "gulp-uglify": "^1.2.0"
+  }
 }

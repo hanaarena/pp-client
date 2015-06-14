@@ -6,8 +6,9 @@ html
       link(rel='stylesheet', href='/bower_modules/bootstrap/dist/css/bootstrap.css')
       link(rel='stylesheet', href='/build/main.css')
       script(type='text/javascript', src='/bower_modules/jquery/jquery.min.js')
-          script(type='text/javascript', src='/bower_modules/jquery.cookie/jquery.cookie.js')
+      script(type='text/javascript', src='/bower_modules/jquery.cookie/jquery.cookie.js')
       script(type='text/javascript', src='/bower_modules/bootstrap/dist/js/bootstrap.min.js')
+
       block styles
 
       block scripts
@@ -15,3 +16,4 @@ html
   body
     block content
   script(type='text/javascript', src='/build/ppclient.bootstrap.js')
+  script(type='text/javascript', src='/build/main.js?' + new Date().getTime())

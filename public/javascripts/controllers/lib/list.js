@@ -22,7 +22,7 @@ listModule.controller('listCtrl', [
 			$rootScope.token = token;
 			ACCESS_TOKEN = token;
 			// domain may set to your own site
-			$.cookie('PP_CLIENT', ACCESS_TOKEN, {path: "/", domain: '/', expires: 1});
+			$.cookie('PP_CLIENT', ACCESS_TOKEN);
 		};
 
 		$scope.$watch('token', function(token) {
