@@ -4,7 +4,7 @@ block scripts
     script(type='text/javascript', src='/javascripts/main.js')
 
 block content
-    .container.login(ng-controller='listCtrl', ng-init="token='" + token + "';")
+    .container.login(ng-controller='listCtrl', ng-init="token='" + token + "';myDate='1434262691364'")
         .content.row
             .col-md-12
                 span.label.label-success
@@ -13,7 +13,33 @@ block content
                     else
                         script(type='text/javascript').
                             window.location.reload();
-                each item in pplist
-                    p !{item.content}
+                .pp-list
+                    ul
+                        each item in pplist
+                            li
+                                .list-wrapper
+                                    .list-head
+                                        - var pic = '';
+                                        if item.owner.avatar.match('qbox')
+                                            - pic = item.owner.avatar;
+                                        else
+                                            - pic = 'http://coding.net' + item.owner.avatar;
+                                        a(ng-href='https://coding.net/u/#{item.owner.name}')
+                                            img(width='45', height='45', src= pic, class="comment-list-avatar img-circle")
+                                        span(class='username') !{item.owner.name}
+                                        span(class='create-at') {{#{item.created_at} | date:'yyyy-MM-dd HH:mm:ss'}}
+                                        if item.comments > 0
+                                            span(class='reply') !{item.comments}
+                                    p(class='list-content')
+                                        !{item.content}
+                                //div(class="comment-box detail-comment-list hide show")
+                                //    textarea(class="comment-box-content") @
+                                //    a(href="javascript:void(0);", class="btn btn-lg btn-outline num msg-comment-submit comment-submit-icon", role="button")
+                                //        span(class="glyphicon glyphicon-ok")
+                                //    li
+                                //        img(width="45", height="45", src="public/static/img/avatar2.png", alt="", class="comment-list-avatar img-circle")
+                                //        a(id="comment_29", name="")
+                                //        p(class="comment-list-name")
+                                //        p(class="comment-list-content")
 
 

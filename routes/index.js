@@ -43,6 +43,7 @@ router.get('/list', function(req, res, next) {
 		function callback(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				LIST = JSON.parse(body);
+				console.log(LIST);
 			}
 		}
 
