@@ -20,40 +20,9 @@ router.get('/index', function(req, res, next){
 router.get('/list', function(req, res, next) {
 	var pubilcPpList;
 
-	var options = {
-		url: 'https://coding.net/api/account/current_user?access_token=' + TOKEN.access_token,
-		headers: {
-			'User-Agent': 'request'
-		}
-	};
 
-	function callback(error, response, body) {
-		if (!error && response.statusCode == 200) {
-			NAME = JSON.parse(body);
-			console.log(NAME);
-		}
 
-		var options = {
-			url: 'https://coding.net/api/social/tweet/public_tweets',
-			headers: {
-				'User-Agent': 'request'
-			}
-		};
-
-		function callback(error, response, body) {
-			if (!error && response.statusCode == 200) {
-				LIST = JSON.parse(body);
-				console.log(LIST);
-			}
-		}
-
-		request(options, callback);
-
-		res.render('list', {token: TOKEN.access_token, username: NAME, pplist: LIST.data});
-	}
-
-	request(options, callback);
-
+	res.render('list', {token: TOKEN.access_token, username: NAME, pplist: LIST.data});
 
 });
 
@@ -71,12 +40,44 @@ router.get('/callback/:clientId/:clientKey/:code', function (req, res, next) {
 			console.log(TOKEN);
 		}
 
+		var options = {
+			url: 'https://coding.net/api/account/current_user?access_token=' + TOKEN.access_token,
+			headers: {
+				'User-Agent': 'request'
+			}
+		};
+
+		function callback(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				NAME = JSON.parse(body);
+				console.log(NAME);
+			}
+
+			var options = {
+				url: 'https://coding.net/api/social/tweet/public_tweets',
+				headers: {
+					'User-Agent': 'request'
+				}
+			};
+
+			function callback(error, response, body) {
+				if (!error && response.statusCode == 200) {
+					LIST = JSON.parse(body);
+					console.log(LIST);
+				}
+			}
+
+			request(options, callback);
+
+		}
+
+		request(options, callback);
+
 		// TODO -> temp to del
-		setTimeout(res.redirect('/list'), 1000);
+		res.redirect('/list');
 	}
 
 	request(options, callback);
-
 
 });
 
