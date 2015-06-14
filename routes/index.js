@@ -5,8 +5,9 @@ var router = express.Router();
 var request = require('request');
 
 var TOKEN = ''
-  , NAME = ''
-  ;
+	, NAME = ''
+	, LIST = ''
+	;
 
 router.get('/index', function(req, res, next){
 	if (res) {
@@ -31,11 +32,28 @@ router.get('/list', function(req, res, next) {
 			NAME = JSON.parse(body);
 			console.log(NAME);
 		}
+
+		var options = {
+			url: 'https://coding.net/api/social/tweet/public_tweets',
+			headers: {
+				'User-Agent': 'request'
+			}
+		};
+
+		function callback(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				LIST = JSON.parse(body);
+			}
+		}
+
+		request(options, callback);
+
+		res.render('list', {token: TOKEN.access_token, username: NAME, pplist: LIST.data});
 	}
 
 	request(options, callback);
 
-	res.render('list', {token: TOKEN.access_token, username: NAME});
+
 });
 
 router.get('/callback/:clientId/:clientKey/:code', function (req, res, next) {
@@ -51,11 +69,14 @@ router.get('/callback/:clientId/:clientKey/:code', function (req, res, next) {
 			TOKEN = JSON.parse(body);
 			console.log(TOKEN);
 		}
+
+		// TODO -> temp to del
+		setTimeout(res.redirect('/list'), 1000);
 	}
 
 	request(options, callback);
 
-	res.redirect('/list');
+
 });
 
 module.exports = router;

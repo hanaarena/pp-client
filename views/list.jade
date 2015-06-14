@@ -4,9 +4,16 @@ block scripts
     script(type='text/javascript', src='/javascripts/main.js')
 
 block content
-    .container.login(ng-controller='listCtrl', ng-init="token='" + token + "'; username='" + username.data["name"] + "';")
+    .container.login(ng-controller='listCtrl', ng-init="token='" + token + "';")
         .content.row
             .col-md-12
                 span.label.label-success
-                    span !{username.data['name']}
+                    if username
+                        span !{username.data['name']}
+                    else
+                        script(type='text/javascript').
+                            window.location.reload();
+                each item in pplist
+                    p !{item.content}
+
 
