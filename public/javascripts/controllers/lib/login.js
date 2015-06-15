@@ -37,7 +37,7 @@ loginModule.controller('loginCtrl', [
 				console.log($scope.code);
 				window.location.href = '/callback/' + CLIENT_ID + '/' + CLIENT_KEY + '/' + $scope.code;
 			} else {
-				console.log('Cannot get return code');
+				console.error('Cannot get return code');
 			}
 		};
 

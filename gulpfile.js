@@ -3,8 +3,10 @@ var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
+var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var path = require('path');
+var nodemon = require('gulp-nodemon');
 
 gulp.task('less', function () {
 	gulp.src('./public/less/main.less')
@@ -24,14 +26,30 @@ gulp.task('scripts', function() {
             .pipe(gulp.dest("./public/build/"));
 });
 
-// default gulp task
-gulp.task('default', ['less', 'scripts'], function() {
+gulp.task('mainScript', function() {
+	gulp.src('./public/javascripts/main.js')
+		.pipe(uglify())
+		// .pipe(concat('all.min.js'))
+		.pipe(gulp.dest('./public/build/'));
+	return ;
 });
 
+gulp.task('default', ['less', 'scripts', 'mainScript'], function() {
+});
 
 gulp.task('watch', function() {
-    // watch for CSS changes
     gulp.watch('./public/less/**/*.less', ['less']);
-
     gulp.watch('./public/javascripts/**/*.js', ['scripts']);
+	gulp.watch('./public/javascripts/main.js', ['mainScript']);
+});
+
+gulp.task('nodemon', function () {
+	nodemon({
+		script: 'bin/www',
+		ignore: ['node_modules']
+	})
+});
+
+gulp.task('run', function() {
+	gulp.start('nodemon', 'watch');
 });

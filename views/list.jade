@@ -1,15 +1,13 @@
 extends layout
 
-block scripts
-    script(type='text/javascript', src='/javascripts/main.js')
-
 block content
     .container.login(ng-controller='listCtrl', ng-init="token='" + token + "';")
         .content.row
             .col-md-12
-                span.label.label-success
+                span.label.label-success.block-username
                     if username
-                        span !{username.data['name']}
+                        .icon-username U
+                        .label-username(style='display: none;') !{username.data['name']}
                     else
                         script(type='text/javascript').
                             window.location.reload();
@@ -30,7 +28,7 @@ block content
                                             span(class='username') !{item.owner.name}
                                             span(class='create-at') {{#{item.created_at} | date:'yyyy-MM-dd HH:mm:ss'}}
                                             if item.comments > 0
-                                                span(class='reply') !{item.comments}
+                                                span(class='reply', title= item.comments+'回复') !{item.comments}
                                         p.list-content !{item.content}
                                     //div(class="comment-box detail-comment-list hide show")
                                     //    textarea(class="comment-box-content") @
