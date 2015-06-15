@@ -21,7 +21,7 @@ listModule.controller('listCtrl', [
 			console.log(token);
 			$rootScope.token = token;
 			ACCESS_TOKEN = token;
-			// domain may set to your own site
+			// Cookie domain may set to your own site
 			$.cookie('PP_CLIENT', ACCESS_TOKEN);
 		};
 
@@ -30,12 +30,7 @@ listModule.controller('listCtrl', [
 		});
 
 		$scope.replySubmit = function() {
-			ApiService.ppReply($scope.tweetId, 'fff')
-				.then(function (response) {
-					console.log(response);
-				}, function (response) {
-					console.log(response);
-				});
+			window.location.href = '/post/pp/comment/' + $scope.tweetId + '?content=' + $scope.replyContent;
 		};
 	}
 ]);

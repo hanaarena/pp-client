@@ -32,7 +32,7 @@ apiService.factory('ApiService', [
 				content: content
 			};
 
-			var url = URL + '/social/tweet/' + id + '/comment';
+			var url = '/social/tweet/' + id + '/comment';
 
 			return this.post(url, params, $.cookie('PP_CLIENT'));
 		}

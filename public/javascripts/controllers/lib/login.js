@@ -12,6 +12,7 @@ loginModule.controller('loginCtrl', [
 	'$http',
 	'$location',
 	function ($q, $rootScope, $scope, $http, $location) {
+		var ACCESS_TOKEN = '';
 
 		var CLIENT_ID = '313610324f55794ef0648f087646618a';
 		var CLIENT_KEY = '39038f6eb75d16ad18271d54b596dbdef81f3f72';
@@ -44,6 +45,18 @@ loginModule.controller('loginCtrl', [
 		$scope.oAuth = function () {
 			window.location.href = 'https://coding.net/oauth_authorize.html?client_id=' + CLIENT_ID + '&redirect_uri=http://localhost:3001/index&response_type=code&scope=all';
 		};
+
+		$scope.getToken = function (token) {
+			console.log(token);
+			$rootScope.token = token;
+			ACCESS_TOKEN = token;
+			// Cookie domain may set to your own site
+			$.cookie('PP_CLIENT', ACCESS_TOKEN);
+		};
+
+		$scope.$watch('token', function(token) {
+			$scope.getToken(token);
+		});
 
 		$scope.checkLogin = function () {
 			console.log('init check');

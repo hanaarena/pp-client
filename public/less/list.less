@@ -77,6 +77,17 @@
             right: 10px;
             top: 15px;
             color: #AFAFB0;
+            cursor: pointer;
+            line-height: 21px;
+          }
+
+          span.reply:hover {
+            position: absolute;
+            font: 20px "Georgia";
+            right: 10px;
+            top: 15px;
+            color: #8FB1FA;
+            cursor: pointer;
             line-height: 21px;
           }
         }
@@ -107,6 +118,37 @@
         
         .monkey, .bubble-markdown-image-link {
           display: block;
+        }
+
+        .detail-comment-list {
+          .comment-detail{
+            border-top: 1px solid #eee;
+            padding: 10px;
+
+            img {
+              float: left;
+            }
+
+            .comment-list-name {
+              display: block;
+              color: #A5AFC0;
+              padding: 2px 0 0 45px;
+            }
+
+            .comment-list-create {
+              display: block;
+              font: 10px "Georgia";
+              color: #CCD1D8;
+              margin-top: -7px;
+              padding: 0px 0 0px 51px;
+            }
+
+            .comment-list-content {
+              display: block;
+              padding: 10px 2px;
+              border-bottom: 1px solid #eee;
+            }
+          }
         }
       }
     }

@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    .container.login(ng-controller='listCtrl')
+    .container.login(ng-controller='listCtrl', ng-init="token='" + token + "';")
         .content.row
             .col-md-12
                 span.label.label-success.block-username
@@ -31,11 +31,12 @@ block content
                                         p.list-content
                                             !{item.content}
                                         div.comment-box.detail-comment-list.hide
-                                            .comment-box-reply
-                                                form(name='replyForm', ng-submit='replySubmit()')
-                                                    input(type='hidden', value= item.id, ng-init="tweetId='" + item.id + "'")
-                                                    textarea.comment-box-content(ng-model='replyContent') @!{item.owner.name}
-                                                    input.glyphicon.glyphicon-ok(type='submit')
+                                            // - ALL scope token looks like doesn't support replay
+                                            //.comment-box-reply
+                                            //    form(name='replyForm', ng-submit='replySubmit()')
+                                            //        input(type='hidden', value= item.id, ng-init="tweetId='" + item.id + "'")
+                                            //        textarea.comment-box-content(ng-model='replyContent') @!{item.owner.name}
+                                            //        input.glyphicon.glyphicon-ok(type='submit')
                                             each comment in item.comment_list
                                                 div.comment-detail
                                                     - var commentAvatar = '';
@@ -46,8 +47,8 @@ block content
                                                     img(width='45', height='45', src= commentAvatar, alt='', class='comment-list-avatar img-circle')
                                                     a(id= comment.tweet_id, name= comment.tweet_id)
                                                     p.comment-list-name !{comment.owner.name}
-                                                    div !{comment.content}
+                                                    .comment-list-create {{#{comment.created_at} | date:'yyyy-MM-dd HH:mm:ss'}}
+                                                    .comment-list-content !{comment.content}
                         else
                             script(type='text/javascript').
                                 window.location.reload();
-

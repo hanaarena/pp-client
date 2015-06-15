@@ -28,6 +28,8 @@ $('.block-username').hover(function() {
 	$('.label-username').fadeIn('fast');
 }, function() {
 	$('.label-username').hide();
+}).click(function() {
+	window.location.reload();
 });
 
 // PP list comment box control
