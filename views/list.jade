@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    .container.login(ng-controller='listCtrl', ng-init="token='" + token + "';")
+    .container.login(ng-controller='listCtrl')
         .content.row
             .col-md-12
                 span.label.label-success.block-username
@@ -25,20 +25,28 @@ block content
                                                 - pic = 'http://coding.net' + item.owner.avatar;
                                             a(ng-href='https://coding.net/u/#{item.owner.name}')
                                                 img(width='45', height='45', src= pic, class="comment-list-avatar img-circle")
-                                            span(class='username') !{item.owner.name}
-                                            span(class='create-at') {{#{item.created_at} | date:'yyyy-MM-dd HH:mm:ss'}}
-                                            if item.comments > 0
-                                                span(class='reply', title= item.comments+'回复') !{item.comments}
-                                        p.list-content !{item.content}
-                                    //div(class="comment-box detail-comment-list hide show")
-                                    //    textarea(class="comment-box-content") @
-                                    //    a(href="javascript:void(0);", class="btn btn-lg btn-outline num msg-comment-submit comment-submit-icon", role="button")
-                                    //        span(class="glyphicon glyphicon-ok")
-                                    //    li
-                                    //        img(width="45", height="45", src="public/static/img/avatar2.png", alt="", class="comment-list-avatar img-circle")
-                                    //        a(id="comment_29", name="")
-                                    //        p(class="comment-list-name")
-                                    //        p(class="comment-list-content")
+                                            span.username !{item.owner.name}
+                                            span.create-at {{#{item.created_at} | date:'yyyy-MM-dd HH:mm:ss'}}
+                                            span.reply(title= item.comments+'回复') !{item.comments}
+                                        p.list-content
+                                            !{item.content}
+                                        div.comment-box.detail-comment-list.hide
+                                            .comment-box-reply
+                                                form(name='replyForm', ng-submit='replySubmit()')
+                                                    input(type='hidden', value= item.id, ng-init="tweetId='" + item.id + "'")
+                                                    textarea.comment-box-content(ng-model='replyContent') @!{item.owner.name}
+                                                    input.glyphicon.glyphicon-ok(type='submit')
+                                            each comment in item.comment_list
+                                                div.comment-detail
+                                                    - var commentAvatar = '';
+                                                    if comment.owner.avatar.match('qbox')
+                                                        - commentAvatar = comment.owner.avatar
+                                                    else
+                                                        - commentAvatar = 'http://coding.net' + comment.owner.avatar;
+                                                    img(width='45', height='45', src= commentAvatar, alt='', class='comment-list-avatar img-circle')
+                                                    a(id= comment.tweet_id, name= comment.tweet_id)
+                                                    p.comment-list-name !{comment.owner.name}
+                                                    div !{comment.content}
                         else
                             script(type='text/javascript').
                                 window.location.reload();

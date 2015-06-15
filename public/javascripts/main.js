@@ -29,3 +29,17 @@ $('.block-username').hover(function() {
 }, function() {
 	$('.label-username').hide();
 });
+
+// PP list comment box control
+$('.pp-list ul li .list-wrapper .list-head').each(function() {
+	$(this).find('.reply').click(function() {
+		// Hide all .comment-box first
+		if($(this).parent().parent().find('.detail-comment-list').hasClass('show')) {
+			$(this).parent().parent().find('.detail-comment-list').removeClass('show');
+		} else {
+			$('.detail-comment-list').removeClass('show').addClass('hide');
+			$(this).parent().parent().find('.detail-comment-list').addClass('show');
+			$('textarea').focus();
+		}
+	});
+});

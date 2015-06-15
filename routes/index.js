@@ -10,7 +10,9 @@ var TOKEN = ''
 	;
 
 router.get('/index', function(req, res, next){
-	if (res) {
+	if (req.cookies.PP_CLIENT) {
+		res.render('list');
+	} else if (res) {
 		res.render('index');
 	} else {
 		next();
@@ -18,12 +20,7 @@ router.get('/index', function(req, res, next){
 });
 
 router.get('/list', function(req, res, next) {
-	var pubilcPpList;
-
-
-
-	res.render('list', {token: TOKEN.access_token, username: NAME, pplist: LIST.data});
-
+	res.render('list', {token: TOKEN.access_token || req.cookies.PP_CLIENT, username: NAME, pplist: LIST.data});
 });
 
 router.get('/callback/:clientId/:clientKey/:code', function (req, res, next) {

@@ -28,6 +28,15 @@ listModule.controller('listCtrl', [
 		$scope.$watch('token', function(token) {
 			$scope.getToken(token);
 		});
+
+		$scope.replySubmit = function() {
+			ApiService.ppReply($scope.tweetId, 'fff')
+				.then(function (response) {
+					console.log(response);
+				}, function (response) {
+					console.log(response);
+				});
+		};
 	}
 ]);
 

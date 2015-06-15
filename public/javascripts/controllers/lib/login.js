@@ -13,8 +13,8 @@ loginModule.controller('loginCtrl', [
 	'$location',
 	function ($q, $rootScope, $scope, $http, $location) {
 
-		var CLIENT_ID = '416d4cd8a701b785040bc29cdd067ecd';
-		var CLIENT_KEY = '99bae2161aa664595666a86c12545fb8e8ffe9f6';
+		var CLIENT_ID = '313610324f55794ef0648f087646618a';
+		var CLIENT_KEY = '39038f6eb75d16ad18271d54b596dbdef81f3f72';
 
 		$scope.$watch('$location.path()', function () {
 			$scope.oAuthCb();
