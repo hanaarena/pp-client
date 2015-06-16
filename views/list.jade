@@ -11,6 +11,11 @@ block content
                     else
                         script(type='text/javascript').
                             window.location.reload();
+                .pp-box
+                    form.pp-form(name="pp-form", action='/post/pp/new', method='POST')
+                        textarea.pp-content(name='ppcontent', placeholder='输入pp', ng-model='ppContent')
+                        input(type='hidden', name='ppdevice', value='ppclient')
+                        input.pp-submit.btn.btn-default(type='submit', value='Send')
                 .pp-list
                     ul
                         if pplist

@@ -41,7 +41,7 @@ $('.pp-list ul li .list-wrapper .list-head').each(function() {
 		} else {
 			$('.detail-comment-list').removeClass('show').addClass('hide');
 			$(this).parent().parent().find('.detail-comment-list').addClass('show');
-			$('textarea').focus();
+			$('.detail-comment-list textarea').focus();
 		}
 	});
 });

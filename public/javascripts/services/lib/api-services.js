@@ -35,7 +35,18 @@ apiService.factory('ApiService', [
 			var url = '/social/tweet/' + id + '/comment';
 
 			return this.post(url, params, $.cookie('PP_CLIENT'));
-		}
+		};
+
+		ApiService.ppNew = function (content, device) {
+			var params = {
+				content: content,
+				device: device ? device : ''
+			};
+
+			var url = '/social/tweet';
+
+			return this.post(url, params, $.cookie('PP_CLIENT'));
+		};
 
 		ApiService.getCurrentUser = function (endpoint, token) {
 			return ApiService.invoke(endpoint, null, token);
@@ -54,7 +65,7 @@ apiService.factory('ApiService', [
 			}
 			console.log(url);
 			deferred.promise.xhr = $.ajax(url, {
-				'dataType': 'jsonp',
+				'dataType': 'POST',
 				'traditional': true,
 				'data': params,
 				"timeout": 120000,

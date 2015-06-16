@@ -34,7 +34,6 @@ router.get('/list', function(req, res, next) {
 		function callback(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				NAME = JSON.parse(body);
-				console.log(NAME);
 			}
 
 			var options = {
@@ -47,7 +46,6 @@ router.get('/list', function(req, res, next) {
 			function callback(error, response, body) {
 				if (!error && response.statusCode == 200) {
 					LIST = JSON.parse(body);
-					console.log(LIST);
 				}
 
 				res.render('list', {token: TOKEN.access_token || req.cookies.PP_CLIENT, username: NAME, pplist: LIST.data});
@@ -99,7 +97,27 @@ router.get('/post/pp/comment/:id/', function(req, res, next) {
 	}
 
 	request(options, callback);
+});
 
+router.post('/post/pp/new', function(req, res, next) {
+	var url = 'https://coding.net/api/social/tweet?content=' + req.body.ppcontent + '&device=ppclient&access_token=' + req.cookies.PP_CLIENT;
+
+	console.log(req.body.ppcontent);
+
+	request.post('https://coding.net/api/social/tweet', {
+		form: {
+			content: req.body.ppcontent,
+			device: 'ppclient',
+			access_token: req.cookies.PP_CLIENT
+		}
+	}, function(err, response, body) {
+		if (!err && response.statusCode == 200) {
+			console.log(JSON.parse(body));
+			res.redirect('/list');
+		} else {
+			next();
+		}
+	});
 });
 
 module.exports = router;

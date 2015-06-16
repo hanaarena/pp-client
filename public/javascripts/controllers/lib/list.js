@@ -29,6 +29,7 @@ listModule.controller('listCtrl', [
 			$scope.getToken(token);
 		});
 
+		// It looks like personal token can't make comment for pp
 		$scope.replySubmit = function() {
 			window.location.href = '/post/pp/comment/' + $scope.tweetId + '?content=' + $scope.replyContent;
 		};
