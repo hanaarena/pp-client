@@ -21,13 +21,18 @@ listModule.controller('listCtrl', [
 			console.log(token);
 			$rootScope.token = token;
 			ACCESS_TOKEN = token;
-			// domain may set to your own site
+			// Cookie domain may set to your own site
 			$.cookie('PP_CLIENT', ACCESS_TOKEN);
 		};
 
 		$scope.$watch('token', function(token) {
 			$scope.getToken(token);
 		});
+
+		// It looks like personal token can't make comment for pp
+		$scope.replySubmit = function() {
+			window.location.href = '/post/pp/comment/' + $scope.tweetId + '?content=' + $scope.replyContent;
+		};
 	}
 ]);
 

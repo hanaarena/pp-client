@@ -27,24 +27,45 @@ apiService.factory('ApiService', [
 			return this.post('/account/login', params);
 		};
 
+		ApiService.ppReply = function (id, content) {
+			var params = {
+				content: content
+			};
+
+			var url = '/social/tweet/' + id + '/comment';
+
+			return this.post(url, params, $.cookie('PP_CLIENT'));
+		};
+
+		ApiService.ppNew = function (content, device) {
+			var params = {
+				content: content,
+				device: device ? device : ''
+			};
+
+			var url = '/social/tweet';
+
+			return this.post(url, params, $.cookie('PP_CLIENT'));
+		};
+
 		ApiService.getCurrentUser = function (endpoint, token) {
 			return ApiService.invoke(endpoint, null, token);
 		};
 
 		ApiService.post = function (endpoint, params, config) {
-			return ApiService.invoke(endpoint, params);
+			return ApiService.invoke(endpoint, params, config);
 		};
 
 		ApiService.invoke = function (endpoint, params, token) {
 			var deferred = $q.defer(); // Create Promise
 			if (token) {
-				var url = URL + endpoint + '?access_token' + token;
+				var url = URL + endpoint + '?access_token=' + token;
 			} else {
 				var url = URL + endpoint;
 			}
 			console.log(url);
 			deferred.promise.xhr = $.ajax(url, {
-				'dataType': 'jsonp',
+				'dataType': 'POST',
 				'traditional': true,
 				'data': params,
 				"timeout": 120000,
