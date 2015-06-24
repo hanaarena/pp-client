@@ -1,6 +1,11 @@
 extends layout
 
 block content
+    if messages.errors
+        .alert.alert-danger.fade.in
+            button.close(type='button', data-dismiss='alert') close
+            for error in messages.errors
+                div= error
     .container.login(ng-controller='listCtrl', ng-init="token='" + token + "';")
         .content.row
             .col-md-12

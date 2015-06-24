@@ -113,6 +113,10 @@ router.post('/post/pp/new', function(req, res, next) {
 	}, function(err, response, body) {
 		if (!err && response.statusCode == 200) {
 			console.log(JSON.parse(body));
+			var err = JSON.parse(body);
+			if (err.code == '1') {
+				req.flash('errors', err.msg.content);
+			}
 			res.redirect('/list');
 		} else {
 			next();

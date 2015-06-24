@@ -33,6 +33,16 @@ listModule.controller('listCtrl', [
 		$scope.replySubmit = function() {
 			window.location.href = '/post/pp/comment/' + $scope.tweetId + '?content=' + $scope.replyContent;
 		};
+
+		// Validation
+		//$scope.valids = function($event) {
+		//	if ($scope.ppContent == '') {
+		//		alert('冒泡内容不能为空');
+		//		$event.preventDefault();
+		//	} else {
+		//		return true;
+		//	}
+		//};
 	}
 ]);
 
